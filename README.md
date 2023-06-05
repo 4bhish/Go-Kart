@@ -20,7 +20,6 @@ This project was created with [Create React App](https://github.com/facebook/cre
 - Authentication - Create Account , Login and Log-out
 - Address Management
 - Checkout
-- 
 ## Built With
 
 - React Js - JavaScript library for building user interfaces
