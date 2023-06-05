@@ -9,7 +9,7 @@ This project was created with [Create React App](https://github.com/facebook/cre
 
 - Home page
 - Product listing page
-- Filter and sort products
+- Filter 
 - Single Product Page
 - Search product
 - Filters by - Price ,Category and Ratings
