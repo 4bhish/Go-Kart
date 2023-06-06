@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { CartProvider } from '../contexts/CartContext';
-import { Link, Navigate  } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { WishlistProvider } from '../contexts/WishlistContext';
 import '../styles/Cart.css';
 
 function Cart() {
-  const [checkoutClick,setCheckoutClick] = useState(false)
+  const [checkoutClick, setCheckoutClick] = useState(false);
 
   const { handleAddToWishlist } = useContext(WishlistProvider);
   const { cartProds, removeFromCart, clearCart, setCartProds } = useContext(CartProvider);
@@ -38,6 +38,9 @@ function Cart() {
         <div className="cart__details">
           {cartProds.map((product) => (
             <div key={product.id} className="cart__product">
+              <div className="cart__product-image">
+                <img style={{width:"200px", height:"200px", objectFit:"cover"}} src={product.thumbnail} alt={product.title} />
+              </div>
               <div className="cart__product-details">
                 <h3>{product.title}</h3>
                 <p>Price: ${product.price}</p>
@@ -56,7 +59,7 @@ function Cart() {
                   <button onClick={() => removeFromCart(product)}>Remove</button>
                   <button onClick={() => handleAddToWishlist(product)}>Move to Wishlist</button>
                 </div>
-                
+
               </div>
             </div>
           ))}
@@ -66,10 +69,14 @@ function Cart() {
           </div>
         </div>
       )}
-      { cartProds.length > 0 &&  <button onClick={() => setCheckoutClick(true)} className="cart__checkout-link">Checkout </button>}
-      {
-        checkoutClick && <Navigate to='/checkout' state={{total: subtotal}} />
-      }
+      {cartProds.length > 0 && (
+        <>
+          <button onClick={() => setCheckoutClick(true)} className="cart__checkout-link">
+            Checkout
+          </button>
+          {checkoutClick && <Navigate to="/checkout" state={{ total: subtotal }} />}
+        </>
+      )}
     </div>
   );
 }
